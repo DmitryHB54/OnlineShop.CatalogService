@@ -17,6 +17,6 @@ public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCo
             .WithMessage("Slug must contain only lowercase letters, digits, and hyphens")
             .MustAsync(async (slug, cancellationToken) => 
                 !await categoryRepository.ExistsWithSlugAsync(slug, cancellationToken))
-            .WithMessage("Category with this slug already exitsts");
+            .WithMessage("Category with this slug already exists");
     }
 }

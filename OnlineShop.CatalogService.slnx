@@ -6,6 +6,6 @@
     <Project Path="OnlineShop.CatalogService.WebApi/OnlineShop.CatalogService.WebApi.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="OnlineShop.CatalogService.UnitTests/OnlineShop.CatalogService.UnitTests.csproj" Id="215250a0-8031-40a6-99c4-b2ee067df56d" />
+    <Project Path="OnlineShop.CatalogService.Tests/OnlineShop.CatalogService.Tests.csproj" Id="904a19bc-a3ae-404d-94a5-97862938cd03" />
   </Folder>
 </Solution>
