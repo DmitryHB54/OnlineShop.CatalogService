@@ -12,10 +12,7 @@ public class GetCategoriesQueryHandler(ICategoryRepository categoryRepository, I
 {
     public async Task<List<CategoryDto>> Handle(GetCategoreisQuery request, CancellationToken cancellationToken)
     {
-        return await categoryRepository.Query()
-            .AsNoTracking()
-            .OrderBy(c => c.Name)
-            .ProjectTo<CategoryDto>(mapper.ConfigurationProvider)
-            .ToListAsync(cancellationToken);
+        var categories = await categoryRepository.GetAllAsync(cancellationToken);
+        return mapper.Map<List<CategoryDto>>(categories);
     }
 }

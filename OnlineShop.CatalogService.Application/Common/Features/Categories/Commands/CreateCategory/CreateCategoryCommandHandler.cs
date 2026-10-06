@@ -12,7 +12,7 @@ public class CreateCategoryCommandHandler(ICategoryRepository categoryRepository
         var category = new Category(request.Name, request.Slug, request.ParentId);
 
         categoryRepository.Add(category);
-        await unitOfWork.SsveChangesAsync(cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return category.Id;
     }

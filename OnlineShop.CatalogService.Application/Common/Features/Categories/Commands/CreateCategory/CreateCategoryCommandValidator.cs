@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+using OnlineShop.CatalogService.Application.Common.Interfaces;
 
 namespace OnlineShop.CatalogService.Application.Common.Features.Categories.Commands.CreateCategory;
 public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
 {
-    public CreateCategoryCommandValidator()
+    public CreateCategoryCommandValidator(ICategoryRepository categoryRepository)
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required")
@@ -13,6 +14,9 @@ public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCo
             .NotEmpty().WithMessage("Slug is required")
             .MaximumLength(200)
             .Matches("^[a-z0-9-]+$")
-            .WithMessage("Slug must contain only lowercase letters, digits, and hyphens");
+            .WithMessage("Slug must contain only lowercase letters, digits, and hyphens")
+            .MustAsync(async (slug, cancellationToken) => 
+                !await categoryRepository.ExistsWithSlugAsync(slug, cancellationToken))
+            .WithMessage("Category with this slug already exitsts");
     }
 }
