@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="OnlineShop.CatalogService.Application/OnlineShop.CatalogService.Application.csproj" Id="855514d4-392c-4691-bf4f-6c741680ad82" />
+    <Project Path="OnlineShop.CatalogService.Domain/OnlineShop.CatalogService.Domain.csproj" Id="182355d8-72e2-41d0-bc6c-d1e48d0eb149" />
+    <Project Path="OnlineShop.CatalogService.Infrastructure/OnlineShop.CatalogService.Infrastructure.csproj" Id="3e733287-8c95-4d86-b971-1ce82350a378" />
+    <Project Path="OnlineShop.CatalogService.WebApi/OnlineShop.CatalogService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="OnlineShop.CatalogService.UnitTests/OnlineShop.CatalogService.UnitTests.csproj" Id="215250a0-8031-40a6-99c4-b2ee067df56d" />
+  </Folder>
+</Solution>
