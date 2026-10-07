@@ -11,7 +11,7 @@ public class CategoryRepository(CatalogDbContext dbContext) : ICategoryRepositor
     public Task<Category?> GetBySlugAsync(string slug, CancellationToken cancellationToken = default)
         => dbContext.Categories.FirstOrDefaultAsync(c => c.Slug == slug, cancellationToken);
     public Task<List<Category>> GetAllAsync(CancellationToken cancellationToken = default)
-        => dbContext.Categories.AsNoTracking().ToListAsync();
+        => dbContext.Categories.AsNoTracking().OrderBy(c => c.Name).ToListAsync();
     public Task<bool> ExistsWithSlugAsync(string slug, CancellationToken cancellationToken = default)
         => dbContext.Categories.AnyAsync(c => c.Slug == slug, cancellationToken);
     public void Add(Category category) => dbContext.Categories.Add(category);

@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper.QueryableExtensions;
 using OnlineShop.CatalogService.Application.Common.Features.Categories.Dtos;
 using OnlineShop.CatalogService.Application.Common.Interfaces;
+using OnlineShop.CatalogService.Domain.Entities;
 
 namespace OnlineShop.CatalogService.Application.Common.Features.Categories.Queries.GetCategories;
 
@@ -12,7 +11,7 @@ public class GetCategoriesQueryHandler(ICategoryRepository categoryRepository, I
 {
     public async Task<List<CategoryDto>> Handle(GetCategoreisQuery request, CancellationToken cancellationToken)
     {
-        var categories = await categoryRepository.GetAllAsync(cancellationToken);
+        List<Category> categories = await categoryRepository.GetAllAsync(cancellationToken);
         return mapper.Map<List<CategoryDto>>(categories);
     }
 }
