@@ -11,4 +11,5 @@ public record ProductDto(
     string CategoryName,
     string BrandId,
     string BrandName,
-    bool isActive);
+    bool isActive,
+    DateTime CreatedAt);

@@ -12,6 +12,8 @@ public record ProductDetailsDto(
     string BrandId,
     string BrandName,
     bool isActive,
+    DateTime CreatedAt,
+    DateTime? UpdatedAt,
     IReadOnlyList<SpecificationDto> Specifications);
 
-public record SpecificationDto(string Key, string Value, int DisplayOrder);
+public record SpecificationDto(Guid Id, string Key, string Value, int DisplayOrder);
