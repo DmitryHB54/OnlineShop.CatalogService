@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using OnlineShop.CatalogService.Application.Common.Features.Brands.Dtos;
 using OnlineShop.CatalogService.Application.Common.Features.Categories.Dtos;
 using OnlineShop.CatalogService.Application.Common.Features.Products.Dtos;
 using OnlineShop.CatalogService.Domain.Entities;
@@ -20,6 +21,7 @@ public class CatalogMappingProfile : Profile
             .ForMember(d => d.Specifications, o => o.MapFrom(s =>
                 s.Specifications.OrderBy(x => x.DisplayOrder)));
 
+        CreateMap<Brand, BrandDto>();
         CreateMap<ProductSpecification, SpecificationDto>();
     }
 }

@@ -14,7 +14,7 @@ public class GetProductByIdHandler(IProductRepository productRepository,
     {
         var product = await productRepository.GetByIdWithDetailsAsync(request.Id, cancellationToken);
 
-        if (product is null)
+        if (product is null || !product.IsActive)
             throw new NotFoundException(nameof(Product), request.Id);
 
         return mapper.Map<ProductDetailsDto>(product);

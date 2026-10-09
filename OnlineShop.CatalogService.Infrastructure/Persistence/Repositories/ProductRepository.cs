@@ -42,12 +42,12 @@ public class ProductRepository(CatalogDbContext dbContext) : IProductRepository
         if (filter.MaxPrice.HasValue)
             query = query.Where(p => p.Price <= filter.MaxPrice.Value);
 
-        if(!string.IsNullOrEmpty(filter.Search))
+        if(!string.IsNullOrWhiteSpace(filter.Search))
         {
             var search = filter.Search.Trim().ToLower();
             query = query.Where(p =>
-                EF.Functions.ILike(p.Name, $"%{search}") ||
-                EF.Functions.ILike(p.Description ?? string.Empty, $"%{search}"));
+                EF.Functions.ILike(p.Name, $"%{search}%") ||
+                EF.Functions.ILike(p.Description ?? string.Empty, $"%{search}%"));
         }
 
         if (filter.IsActive.HasValue)
