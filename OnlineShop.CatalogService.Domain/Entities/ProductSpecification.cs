@@ -12,14 +12,34 @@ public class ProductSpecification : Entity
 
     public ProductSpecification(Guid productId, string key, string value, int displayOrder = 0)
     {
-        if (string.IsNullOrWhiteSpace(key))
-            throw new ArgumentException("Key cannot be empty", nameof(key));
-        if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException("Value cannot be empty", nameof(value));
+        ValidateKey(key);
+        ValidateValue(value);
 
         ProductId = productId;
         Key = key;
         Value = value;
         DisplayOrder = displayOrder;
+    }
+
+    public void Update(string key, string value, int displayOrder)
+    {
+        ValidateKey(key);
+        ValidateValue(value);
+
+        Key = key;
+        Value = value;
+        DisplayOrder = displayOrder;
+    }
+
+    private void ValidateKey(string key)
+    {
+        if (string.IsNullOrWhiteSpace(key))
+            throw new ArgumentException("Key cannot be empty", nameof(key));
+    }
+
+    private void ValidateValue(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            throw new ArgumentException("Value cannot be empty", nameof(value));
     }
 }

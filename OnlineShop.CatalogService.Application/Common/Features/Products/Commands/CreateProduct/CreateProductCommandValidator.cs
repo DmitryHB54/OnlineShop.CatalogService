@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using OnlineShop.CatalogService.Application.Common.Interfaces;
 
-namespace OnlineShop.CatalogService.Application.Common.Features.Products.Command.CreateProduct;
+namespace OnlineShop.CatalogService.Application.Common.Features.Products.Commands.CreateProduct;
 public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
 {
     public CreateProductCommandValidator(

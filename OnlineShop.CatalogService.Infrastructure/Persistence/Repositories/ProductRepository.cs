@@ -17,6 +17,12 @@ public class ProductRepository(CatalogDbContext dbContext) : IProductRepository
             .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
     public Task<bool> ExistsWithSlugAsync(string slug, CancellationToken cancellationToken = default)
         => dbContext.Products.AnyAsync(p => p.Slug == slug, cancellationToken);
+    public void AddSpecification(ProductSpecification specification)
+        => dbContext.ProductSpecifications.Add(specification);
+    public void RemoveSpecification(ProductSpecification specification)
+        => dbContext.ProductSpecifications.Remove(specification);
+    public void RemoveSpecifications(IEnumerable<ProductSpecification> specifications)
+        => dbContext.ProductSpecifications.RemoveRange(specifications);
     public void Add(Product product) => dbContext.Products.Add(product);
     public void Remove(Product product) => dbContext.Products.Remove(product);
 

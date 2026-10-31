@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace OnlineShop.CatalogService.Application.Common.Features.Products.Command.CreateProduct;
+namespace OnlineShop.CatalogService.Application.Common.Features.Products.Commands.CreateProduct;
 
 public record CreateProductCommand(
      string Name,

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using OnlineShop.CatalogService.Application.Common.Interfaces;
 
-namespace OnlineShop.CatalogService.Application.Common.Features.Products.Command.UpdateProduct;
+namespace OnlineShop.CatalogService.Application.Common.Features.Products.Commands.UpdateProduct;
 public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
 {
     public UpdateProductCommandValidator(

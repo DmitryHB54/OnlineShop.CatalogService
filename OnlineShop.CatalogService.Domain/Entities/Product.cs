@@ -92,7 +92,7 @@ public class Product : Entity
         UpdatedAt = DateTime.UtcNow;
     }
 
-    public void ClearSpecification()
+    public void ClearSpecifications()
     {
         _specifications.Clear();
         UpdatedAt = DateTime.UtcNow;

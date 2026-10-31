@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace OnlineShop.CatalogService.Application.Common.Features.Products.Command.UpdateProduct;
+namespace OnlineShop.CatalogService.Application.Common.Features.Products.Commands.UpdateProduct;
 
 public record UpdateProductCommand(
     Guid Id,

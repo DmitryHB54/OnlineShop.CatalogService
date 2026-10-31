@@ -2,7 +2,7 @@
 using OnlineShop.CatalogService.Application.Common.Interfaces;
 using OnlineShop.CatalogService.Domain.Entities;
 
-namespace OnlineShop.CatalogService.Application.Common.Features.Products.Command.CreateProduct;
+namespace OnlineShop.CatalogService.Application.Common.Features.Products.Commands.CreateProduct;
 
 public class CreaeteProductCommandHandler(
     IProductRepository productRepository,

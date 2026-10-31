@@ -3,7 +3,7 @@ using OnlineShop.CatalogService.Application.Common.Interfaces;
 using OnlineShop.CatalogService.Application.Common.Exceptions;
 using OnlineShop.CatalogService.Domain.Entities;
 
-namespace OnlineShop.CatalogService.Application.Common.Features.Products.Command.UpdateProduct;
+namespace OnlineShop.CatalogService.Application.Common.Features.Products.Commands.UpdateProduct;
 public class UpdateProductCommandHandler(
     IProductRepository productRepository,
     IUnitOfWork unitOfWork) : IRequestHandler<UpdateProductCommand>
