@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.CatalogService.Application.Common.Features.Products.Commands.ActivateProduct;
 using OnlineShop.CatalogService.Application.Common.Features.Products.Commands.AddSpecification;
@@ -36,6 +37,7 @@ public class ProductsController(ISender mediator) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateProductCommand command,
@@ -46,6 +48,7 @@ public class ProductsController(ISender mediator) : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -60,6 +63,7 @@ public class ProductsController(ISender mediator) : ControllerBase
     }
 
     [HttpPatch("{id:guid}/deactivate")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Deactivate(Guid id, CancellationToken cancellationToken)
@@ -84,6 +88,7 @@ public class ProductsController(ISender mediator) : ControllerBase
         => Ok(await mediator.Send(new GetProductSpecificationsQuery(id), cancellationToken));
 
     [HttpPost("{id:guid}/specifications")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -99,6 +104,7 @@ public class ProductsController(ISender mediator) : ControllerBase
     }
 
     [HttpPut("{productId:guid}/specifications/{specId:guid}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -116,6 +122,7 @@ public class ProductsController(ISender mediator) : ControllerBase
     }
 
     [HttpDelete("{productId:guid}/specifications/{specId:guid}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RemoveSpecification(Guid productId, Guid specId, CancellationToken cancellationToken)
@@ -125,6 +132,7 @@ public class ProductsController(ISender mediator) : ControllerBase
     }
 
     [HttpPut("{productId:guid}/specifications")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

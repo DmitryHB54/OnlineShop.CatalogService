@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.CatalogService.Application.Common.Features.Brands.Commands.CreateBrand;
 using OnlineShop.CatalogService.Application.Common.Features.Brands.Dtos;
@@ -23,6 +24,7 @@ public class BrandsController(ISender mediator) : ControllerBase
         => Ok(await mediator.Send(new GetBrandByIdQuery(id), cancellationToken));
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateBrandCommand command, CancellationToken cancellatonToken)
