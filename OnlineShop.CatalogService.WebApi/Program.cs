@@ -1,6 +1,7 @@
 using OnlineShop.CatalogService.Application;
 using OnlineShop.CatalogService.Infrastructure;
 using OnlineShop.CatalogService.WebApi.ExceptionHandling;
+using OnlineShop.CatalogService.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +11,10 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); // глобальный обработчик исключений
 
-builder.Services.AddControllers();
+builder.Services.AddAuthentication(builder.Configuration);
 
+builder.Services.AddControllers();
+builder.Services.AddSwaggerConfiguration();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -19,17 +22,11 @@ var app = builder.Build();
 
 app.UseExceptionHandler(); // middleware который ловит исключения и вызывает зарегистрированные обработчики
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("swagger/v1/swagger.json", "Catalog API V1");
-        c.RoutePrefix = string.Empty;
-    });
-}
+app.UseSwaggerDocumantation(app.Environment);
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
